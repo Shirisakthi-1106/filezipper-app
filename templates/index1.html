@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zip Animation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff8e7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .zip-container {
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      width: 200px;
+    }
+
+    .zip-container.clicked {
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(300px) scale(0.7);
+        opacity: 0;
+      }
+    }
+
+    .text {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #444;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="zip-container" id="zipIcon">
+    <img src="{{ url_for('static', filename='image.png') }}" alt="ZIP Icon" width="100%">
+
+  </div>
+
+  <script>
+    const zipIcon = document.getElementById("zipIcon");
+
+    zipIcon.addEventListener("click", () => {
+      zipIcon.classList.add("clicked");
+
+      // After animation ends, redirect
+      setTimeout(() => {
+        window.location.href = "/home"; // change to your actual route like "/compress" if needed
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
